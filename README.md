@@ -73,9 +73,14 @@ flowchart TD
     style J fill:#bbf,stroke:#333,stroke-width:2px
 ```
 
-## 📖 Deep Technical Implementation
+## 📖 Deep Technical Implementation & Use Cases
 
-This document serves as the high-level business case. For detailed, step-by-step instructions on implementing this architecture, please refer to the technical markdown files in this repository:
+This document serves as the high-level business case. For detailed, step-by-step instructions on implementing this architecture—or to see it applied in a real-world scenario—please refer to the technical markdown files in this repository:
+
+**Real-World Scenarios:**
+- [Use Case: Multi-Branch Hardware Store & Web-Based ERP](USE_CASE_POS_ERP.md)
+
+**Technical Guides:**
 - Project Goal & PXE Boot Setup
 - Troubleshooting (Porteus drivers, STP switch delays, Nginx 502s, KasmVNC auth)
 - Custom Debian Kiosk ISO Build Guide
