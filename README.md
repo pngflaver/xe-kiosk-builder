@@ -41,21 +41,21 @@ The stateless architecture relies on PXE booting diskless clients to a Proxmox e
 ```mermaid
 flowchart TD
     subgraph "Edge / Office"
-        L[Diskless Laptop / Thin Client\n(No HDD, E-Waste)]
-        S[Network Switch]
+        L["Diskless Laptop / Thin Client<br/>(No HDD, E-Waste)"]
+        S["Network Switch"]
     end
 
     subgraph "Server Room / Data Center"
-        P[Proxmox VE Cluster]
-        DHCP[DHCP / TFTP Server]
-        J[Jumpbox CT 112\nDebian + KasmVNC]
+        P["Proxmox VE Cluster"]
+        DHCP["DHCP / TFTP Server"]
+        J["Jumpbox CT 112<br/>Debian + KasmVNC"]
     end
 
-    L -- 1. PXE Boot Request --> S
-    S -- 2. Forward to Server --> DHCP
-    DHCP -- 3. Delivers Kiosk ISO --> L
-    L -- 4. Boots & Auto-Connects via Web Browser --> J
-    J -- 5. Streams Secure Desktop Session --> L
+    L -- "1. PXE Boot Request" --> S
+    S -- "2. Forward to Server" --> DHCP
+    DHCP -- "3. Delivers Kiosk ISO" --> L
+    L -- "4. Boots & Auto-Connects via Web Browser" --> J
+    J -- "5. Streams Secure Desktop Session" --> L
 
     style L fill:#f9f,stroke:#333,stroke-width:2px
     style J fill:#bbf,stroke:#333,stroke-width:2px
