@@ -1,5 +1,10 @@
 # Jumpbox Kiosk Architecture
 
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Platform: Debian](https://img.shields.io/badge/Platform-Debian_12-A81D33?logo=debian&logoColor=white)
+![Hypervisor: Proxmox](https://img.shields.io/badge/Hypervisor-Proxmox_VE-E57000?logo=proxmox&logoColor=white)
+![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
 Welcome to the **Jumpbox Kiosk** project. This repository details a robust, open-source stateless computing architecture designed specifically to empower businesses in developing nations, such as Papua New Guinea. By transforming e-waste into highly functional terminals, this architecture slashes IT costs, eliminates local points of failure, and centralizes management.
 
 ## 🌍 Developing Nations Context
