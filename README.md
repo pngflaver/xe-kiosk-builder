@@ -75,13 +75,12 @@ flowchart TD
 
 ## 📖 Deep Technical Implementation & Use Cases
 
-This document serves as the high-level business case. For detailed, step-by-step instructions on implementing this architecture—or to see it applied in a real-world scenario—please refer to the technical markdown files in this repository:
+This document is just the high-level business case. If you want to see how to actually build it or see a real world scenerio, check out the docs below:
 
-**Real-World Scenarios:**
-- [Use Case: Multi-Branch Hardware Store & Web-Based ERP](USE_CASE_POS_ERP.md)
+**Real-world scenerios:**
+- [Multi-branch hardware store & web ERP](pos-erp-scenario.md)
 
-**Technical Guides:**
-- Project Goal & PXE Boot Setup
-- Troubleshooting (Porteus drivers, STP switch delays, Nginx 502s, KasmVNC auth)
-- Custom Debian Kiosk ISO Build Guide
-- Proxmox Jumpbox (CT 112) Configuration with KasmVNC
+**Technical guides & setup:**
+- [Tech concepts (PXE, STP delays, Kasm, etc)](tech-concepts.md)
+- [Proxmox LXC config guide](proxmox-lxc-guide.md)
+- [Building the custom Debian ISO](build-scripts/setup-kiosk-build.sh) (just read the bash script for now lol)
