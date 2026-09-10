@@ -8,33 +8,39 @@
 
 Welcome to the **Jumpbox Kiosk** project. This repository details a robust, open-source stateless computing architecture designed specifically to empower businesses in developing nations, such as Papua New Guinea. By transforming e-waste into highly functional terminals, this architecture slashes IT costs, eliminates local points of failure, and centralizes management.
 
-## 🌍 Developing Nations Context
+## 🌍 Developing Nations Context: Challenges & Mitigations
 
-Operating an IT infrastructure in emerging economies presents unique environmental and infrastructural challenges. This architecture is built from the ground up to address:
+Operating an IT infrastructure in emerging economies presents unique environmental and infrastructural challenges. This architecture is built from the ground up to address them:
 
-### Hardware Longevity (Heat & Humidity)
-Tropical climates with extreme heat and high humidity relentlessly degrade mechanical components. Traditional hard disk drives (HDDs) have abysmal lifespans in these environments. By removing local storage entirely, we eliminate the primary point of hardware failure.
+| Challenge | Impact on Traditional PCs | The Stateless Kiosk Mitigation |
+| :--- | :--- | :--- |
+| **Heat & Humidity** | Relentlessly degrades mechanical parts, leading to massive hard drive (HDD) failure rates. | **100% Diskless endpoints.** Laptops have no HDDs or SSDs, eliminating the primary point of hardware failure. |
+| **Power Instability** | Unpredictable blackouts cause sudden shutdowns that corrupt standard operating systems. | **Zero Data Corruption.** Endpoints run entirely in RAM. If power drops, nothing corrupts. Just turn it back on. |
+| **Bandwidth (Satellite)** | Downloading Windows updates to 50 individual PCs consumes expensive, metered bandwidth. | **Centralized Processing.** Updates happen once on the server. Endpoints just stream screen pixels, slashing WAN usage. |
 
-### Power Instability (Blackouts & Brownouts)
-Unpredictable power grids cause sudden shutdowns that frequently corrupt standard PC operating systems and file systems. Since our kiosks are entirely stateless and run solely in memory (RAM), a sudden loss of power causes **zero data corruption**. Simply turn the device back on, and it boots fresh over the network.
+## 💻 Hardware Requirements & Sizing
 
-### Bandwidth Limitations (Satellite Data)
-In regions reliant on expensive, metered, or high-latency internet connections (like satellite), downloading updates or data to individual PCs is cost-prohibitive. Centralized processing means all heavy lifting and internet traffic happens on the server side. The kiosk only receives compressed screen updates, drastically reducing wide-area network bandwidth consumption.
-
-## 💻 Hardware Specs: The Power of E-Waste
-
-Why buy expensive modern PCs when old hardware performs just as well in a stateless setup? This architecture thrives on **E-Waste recovery**.
-
+### 1. The Diskless Endpoints (E-Waste Recovery)
+Why buy expensive modern PCs when old hardware performs just as well? This architecture thrives on **E-Waste recovery**.
 * **Kiosk Terminals:** 10 to 15-year-old laptops, $30 thin clients, or any legacy x86 hardware.
-* **Storage Requirements:** **None.** These machines operate completely diskless. Hard drives are removed entirely.
-* **Boot Method:** Network boot (PXE). The terminals fetch a lightweight custom Debian Kiosk ISO directly from the server on startup.
+* **Storage Requirements:** **None.** These machines operate completely diskless. 
+* **Boot Method:** Network boot (PXE). **Note: You do not need multiple ISOs!** The exact same 830MB lightweight Debian ISO is infinitely reusable and streamed to every client simultaneously from the PXE server.
 
-## 💰 Financial Impact & Risks
+### 2. The Centralized Server (Compute Power)
+Because the terminals do zero processing, your server requires enough compute power to host the desktop sessions (via KasmVNC/LXC containers). Here is a scaling guide for your Proxmox host:
 
-### Massive Cost Savings
+| Workload Type | Example Tasks | RAM per User | vCPU per User |
+| :--- | :--- | :--- | :--- |
+| **Light Workload** | Data entry, basic web apps, internal dashboards | 1 - 2 GB | 1 vCPU |
+| **Heavy Workload** | Media streaming, heavy JavaScript/React web apps | 3 - 4 GB | 2 vCPUs |
+
+*(Example: Hosting 20 Light Workload data-entry staff requires ~30GB RAM and 20 vCPUs on the central server).*
+
+## 💰 Financial Impact & Cost Savings
+
+* **The "One UPS" Rule:** Buying 50 Uninterruptible Power Supplies (UPS) for 50 desks is wildly expensive. With this architecture, you only need **one high-quality UPS** for the server room. If the office power dies, the client monitors go black—but the desktop sessions remain actively running on the server! When the power returns, users boot up and are instantly reconnected to their session exactly where they left off.
 * **Zero Licensing Fees:** No Microsoft Windows licenses, no expensive enterprise Antivirus software, and no per-user client access licenses.
 * **Zero Storage Costs at the Edge:** Without the need for HDDs or SSDs in client machines, hardware procurement and replacement costs plummet.
-* **Reduced Maintenance:** Centralized management means IT staff spend zero time fixing individual client operating systems.
 
 ### Risks & Mitigation: Single Point of Failure (SPOF)
 The primary risk of a centralized architecture is that if the main server goes down, the client terminals cannot operate. 
