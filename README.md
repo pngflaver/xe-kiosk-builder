@@ -8,7 +8,7 @@
 
 Welcome to the **Jumpbox Kiosk** project. This repository details a robust, open-source stateless computing architecture designed specifically to empower businesses in developing nations, such as Papua New Guinea. By transforming e-waste into highly functional terminals, this architecture slashes IT costs, eliminates local points of failure, and centralizes management.
 
-## 🌍 Developing Nations Context: Challenges & Mitigations
+## 🇵🇬 Developing Nations Context: Challenges & Mitigations
 
 Operating an IT infrastructure in emerging economies presents unique environmental and infrastructural challenges. This architecture is built from the ground up to address them:
 
